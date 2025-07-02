@@ -34,7 +34,7 @@ trait ColumnHelpers
                     $this->columnsWithSecondaryHeader = true;
                 }
 
-                if ($column instanceof AggregateColumn) {
+                if ($column instanceof AggregateColumn && $this->columnSelectIsEnabledForColumn($column)) {
                     if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
                         $this->addExtraWithCount($column->getDataSource());
                     } elseif ($column->getAggregateMethod() == 'sum' && $column->hasDataSource() && $column->hasForeignColumn()) {
